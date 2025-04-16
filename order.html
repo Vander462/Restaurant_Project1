@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic setup -->
+    <meta charset="UTF-8">
+    <title>Order Now - Vander Restaurant</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <!-- External stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Inline styles specific to this page -->
+    <style>
+        body {
+            padding-top: 70px; /* Prevents content from hiding behind fixed navbar */
+            background-color: #f0f8ff; /* Light background for contrast */
+        }
+        .form-container {
+            background-color: #6f6145; /* Brown background for form */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+        .order-item {
+            margin-bottom: 15px; /* Spacing between item rows */
+        }
+        .btn-submit {
+            background: #d63031; /* Red button */
+            color: rgba(21, 19, 19, 0.867); /* Dark text */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Responsive Navbar with Bootstrap -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Vander</a>
+            
+            <!-- Navbar toggle for mobile view -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="order.html">Order</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main content container -->
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Order Online</h1>
+        
+        <!-- Form to collect customer info and order -->
+        <div class="form-container">
+            <form id="order-form">
+                <!-- Customer name -->
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name:</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
+                </div>
+                <!-- Phone number -->
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" class="form-control" required>
+                </div>
+                <!-- Address -->
+                <div class="mb-3">
+                    <label for="address" class="form-label">Delivery Address:</label>
+                    <textarea id="address" name="address" class="form-control" rows="3" required></textarea>
+                </div>
+
+                <!-- Dynamic item list -->
+                <h4 class="mt-4 mb-3">Select Your Items</h4>
+                <div id="order-items" class="mb-4"></div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn-submit">Submit Order</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- External JS -->
+    <script src="script.js"></script>
+
+    <!-- Order form functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount(); // Update cart number in nav
+
+            // Render food items from JS array (assumes foodItems is defined in script.js)
+            const orderItemsContainer = document.getElementById('order-items');
+            foodItems.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'order-item row';
+                div.innerHTML = `
+                    <div class="col-md-6">
+                        <label>${item.name} - $${item.price.toFixed(2)}</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="number" id="item-${item.id}" name="item-${item.id}" 
+                               class="form-control" min="0" value="0" 
+                               onchange="updateOrderTotal()">
+                    </div>
+                `;
+                orderItemsContainer.appendChild(div);
+            });
+
+            // Handle form submission
+            document.getElementById('order-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Get customer info
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const address = document.getElementById('address').value;
+
+                // Collect selected items
+                const orderDetails = foodItems.map(item => {
+                    const quantity = parseInt(document.getElementById(`item-${item.id}`).value) || 0;
+                    return {
+                        name: item.name,
+                        price: item.price,
+                        quantity: quantity,
+                        subtotal: (item.price * quantity).toFixed(2)
+                    };
+                }).filter(item => item.quantity > 0);
+
+                // Calculate total
+                const total = orderDetails.reduce((sum, item) => sum + parseFloat(item.subtotal), 0).toFixed(2);
+
+                // Alert if no items selected
+                if (orderDetails.length === 0) {
+                    alert('Please select at least one item to order.');
+                    return;
+                }
+
+                // Confirmation message
+                alert(`Order submitted!\nName: ${name}\nPhone: ${phone}\nTotal: $${total}\n\nThank you for your order!`);
+                this.reset(); // Clear form after submission
+            });
+        });
+
+        function updateOrderTotal() {
+            // Optional: Add total display in future
+        }
+    </script>
+
+    <!-- Bootstrap JS bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

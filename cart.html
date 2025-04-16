@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Character encoding -->
+    <meta charset="UTF-8">
+    
+    <!-- Page title -->
+    <title>Your Cart</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    
+    <!-- Custom stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Internal CSS specific to cart page -->
+    <style>
+        body {
+            background: url('Food-Ordering-System.jpg') no-repeat left top fixed;
+            background-size: cover;
+            min-height: 100vh;
+            position: relative;
+            color: white;
+        }
+
+        /* Dark overlay to improve text readability over background */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 15, 0, 0.6);
+        }
+
+        /* Content section styling */
+        .content,
+        .history,
+        .values,
+        .specialties,
+        .team,
+        .family-photo {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #0d130f;
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(10, 15, 36, 0.8);
+            border-radius: 10px;
+        }
+
+        /* Highlighting headings */
+        h1, h3, h4 {
+            color: #09f620;
+        }
+
+        /* Team image style */
+        .team img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        /* Family photo style */
+        .family-photo img {
+            width: 70%;
+            max-width: 600px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        /* Responsive tweak for smaller devices */
+        @media (max-width: 768px) {
+            .family-photo img {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar: dark theme, fixed to top -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <!-- Brand name linking to home -->
+            <a class="navbar-brand" href="index.html">Vander</a>
+
+            <!-- Toggler for smaller screens -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <!-- Navigation links -->
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="order.html">Order</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item">
+                        <!-- Active link shows Cart -->
+                        <a class="nav-link active" href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Cart Section -->
+    <div class="container mt-5">
+        <h1 class="mb-4">Your Cart</h1>
+        
+        <!-- Section for dynamically added cart items -->
+        <section id="cart-items"></section>
+
+        <!-- Total price dynamically updated via JS -->
+        <h3 id="total-price">Total: $0.00</h3>
+
+        <!-- Checkout and continue buttons -->
+        <button onclick="checkout()" class="btn btn-danger">Place Order</button>
+        <a href="menu.html" class="btn btn-secondary">Continue Shopping</a>
+    </div>
+
+    <!-- Link to external JavaScript file -->
+    <script src="script.js"></script>
+
+    <!-- Inline script to render cart items on page load -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCart();        // Function to display items in the cart
+            updateCartCount();   // Function to update cart item count in nav
+        });
+    </script>
+
+    <!-- Bootstrap bundle for responsive components -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

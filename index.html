@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for character encoding and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Page title -->
+    <title>Vander Restaurant</title>
+
+    <!-- Bootstrap CSS for responsive styling -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    
+    <!-- External custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Optional overlay div - make sure it's styled in style.css -->
+    <div class="overlay"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <!-- Logo - add href to make clickable -->
+            <a class="navbar-brand"><img src="logo1.jpg" alt="Logo" style="height: 40px;"></a>
+
+            <!-- Hamburger menu button for small screens -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Collapsible navigation links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <!-- Navigation links -->
+                    <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item">
+                        <!-- Call-to-action button -->
+                        <a class="btn btn-warning text-dark fw-bold" href="order.html">Order Online Now</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- Cart link with dynamic item count -->
+                        <a class="nav-link" href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main content container -->
+    <div class="container">
+        <div class="content">
+            <!-- Welcome message -->
+            <h1>Welcome to Vander</h1>
+            <p>At Vander, we believe that dining is not just about food; it's an experience to be savored.</p>
+            <h3>Join Us</h3>
+            <p>Whether you're celebrating a special occasion or simply enjoying a night out, Vander is the perfect destination.</p>
+        </div>
+        
+        <!-- Restaurant History Section -->
+        <div class="history">
+            <h3>History</h3>
+            <p>Vander Restaurant began as a small eatery with just a few tables and a passionate team of chefs. The founder, Chef Elena Martinez, dreamed of a place where every dish tells a story.</p>
+        </div>
+        
+        <!-- Restaurant Values Section -->
+        <div class="values">
+            <h3>Values</h3>
+            <p>At the core of Vander's philosophy is a commitment to sustainability and community. The restaurant partners with local farmers and artisans.</p>
+        </div>
+        
+        <!-- Restaurant Specialties Section -->
+        <div class="specialties">
+            <h3>Specialties</h3>
+            <p>Vander is particularly famous for its signature dish: the "Mutton Rogan Josh," served with seasonal vegetables and a rich red wine reduction.</p>
+        </div>
+        
+        <!-- Meet the Team Section -->
+        <div class="team">
+            <h3>Meet the Team</h3>
+            <div class="row">
+                <!-- Team Member 1 -->
+                <div class="col-md-4">
+                    <!-- Consider adding class="img-fluid" for responsive image -->
+                    <img src="vander.jpg" alt="Chef Thukten Vander Tshering">
+                    <h4>Chef Thukten Vander Tshering</h4>
+                    <p>Founder and Head Chef</p>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="col-md-4">
+                    <img src="rangdel.jpg" alt="Sous Chef Choney Rangdel">
+                    <h4>Sous Chef Choney Rangdel</h4>
+                </div>
+
+                <!-- Team Member 3 - Missing 'Chef' in title -->
+                <div class="col-md-4">
+                    <img src="ngawang.jpg" alt="Pastry Chef Ngawang Pema">
+                    <h4>Pastry Ngawang Pema</h4> <!-- Suggestion: Change to "Pastry Chef Ngawang Pema" -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Group photo section -->
+        <div class="family-photo">
+            <h3>Our Family</h3>
+            <img src="group.jpg" alt="Vander Family Photo">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light text-center py-3 mt-4">
+        <p>&copy; 2023 Vander Restaurant. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JavaScript bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- External JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
